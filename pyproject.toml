@@ -1,7 +1,7 @@
 [project]
 name = "freethreading_python"
 version = "0.1.0"
-description = "Default template for PDM package"
+description = "Experiments on Performance of NoGIL Compile-time Option of python3.13t"
 authors = [
     {name = "Kevin McWhirter", email = "klmcw@yahoo.com"},
 ]
