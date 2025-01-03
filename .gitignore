@@ -169,3 +169,10 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# klmcw addition - avoid commit asdf versions
+.tool-versions
+# recreated each time container is ...
+pdm.toml
+

@@ -1,0 +1,59 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "Ubuntu",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:noble",
+	"containerEnv": {
+		"TZ": "PST8PDT"
+	},
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers-extra/features/direnv-asdf:2": {
+			// just need asdf installed
+			"version": "latest"
+		}
+	},
+	// Use 'initializeCommand' to run commands on the host machine during initialization
+	"initializeCommand": {
+		"start time": "date"
+	},
+	// Use 'onCreateCommand' to run commands during the container creation process.
+	"onCreateCommand": ".devcontainer/vsc-install-python-pdm.sh",
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": {
+		"pwd": "pwd",
+		"uname": "uname -a",
+		"pdm version": "pdm --version",
+		"python version": "python --version"
+	},
+	// Use 'postStartCommand' to run commands after the container is created.
+	"postStartCommand": {
+		"end time": "date"
+	},
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"charliermarsh.ruff",
+				"tamasfe.even-better-toml",
+				"streetsidesoftware.code-spell-checker"
+			],
+			"settings": {
+				"[python]": {
+					"editor.formatOnSave": true,
+					"editor.codeActionsOnSave": {
+						"source.fixAll": "explicit",
+						"source.organizeImports": "explicit"
+					},
+					"editor.defaultFormatter": "charliermarsh.ruff"
+				},
+				"python.terminal.activateEnvironment": true,
+				"terminal.integrated.defaultProfile.linux": "bash"
+			}
+		}
+	}
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// , "remoteUser": "root"
+}
