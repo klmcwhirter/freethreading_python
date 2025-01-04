@@ -19,13 +19,13 @@
 		"start time": "date"
 	},
 	// Use 'onCreateCommand' to run commands during the container creation process.
-	"onCreateCommand": ".devcontainer/vsc-install-python-pdm.sh",
+	"onCreateCommand": ".devcontainer/vsc-install-python-uv.sh",
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": {
 		"pwd": "pwd",
 		"uname": "uname -a",
-		"pdm version": "pdm --version",
-		"python version": "python --version"
+		"python version": "python --version",
+		"uv version": "uv --version",
 	},
 	// Use 'postStartCommand' to run commands after the container is created.
 	"postStartCommand": {

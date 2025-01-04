@@ -10,25 +10,9 @@ requires-python = "==3.14.*"
 readme = "README.md"
 license = {text = "MIT"}
 
-
-[tool.pdm]
-distribution = false
-
-[tool.pdm.scripts]
-# The ${HOME} env var represents any set of env vars needed to construct the path to python.
-# The point is that information is encoded here and is version controlled so the venv creation is repeatable.
-_create_venv.shell = "pdm venv create -f ${HOME}/.local/bin/python3.14.0a3"
-# This would not typically be needed. It just happens that both executables are needed for this specific project.
-_create_symlinks.shell = "ln -s ${HOME}/.local/bin/python3.14.0a3t .venv/bin/python3.14.0a3t"
-create.composite = ["_create_venv", "_create_symlinks"]
-create.help = "Create the .venv and needed symlinks"
-
-clean.shell = "find . -type d -name __pycache__ -exec rm -fr {} \\;;for d in ${TO_DEL};do echo $d;rm -fr $d;done"
-clean.env = { TO_DEL = "build .coverage coverage.xml log .mypy_cache .pdm-build __pycache__ .pytest_cache qwirkle.egg-info .tox dist" }
-clean.help = "Clean environment"
-
-
-perfects.shell = "./perfects_driver.sh"
+[tool.uv]
+managed = true
+package = false
 
 [tool.autopep8]
 max-doc-length = 140

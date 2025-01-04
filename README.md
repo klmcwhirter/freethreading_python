@@ -63,7 +63,7 @@ The **lowest** and **highest** execution times in each group are indicated with 
 
 Here are the [results](./perfects_driver-py313-fed40.out) from one typical run with Python3.13 on Fedora WS 40 that is summarized below:
 
-_I retested with Python 3.14.0a1 on Fedora 41. Here are those [results](./perfects_driver-py314a1-fed41.out)._
+_I retested with Python 3.14.0a1 and then a3 on Fedora 41. Here are those result: [3.14.0a1](./perfects_driver-py314a1-fed41.out) [3.14.0a3](./perfects_driver-py314a3-fed41.out)._
 
 ### Production Executable (python3.13)
 
@@ -148,3 +148,52 @@ associated with more aggressive context switching; resulting in additional resou
 | python3.13t perfects.py -n 33_551_000 -w 12 -p -v | [6, 28, 496, 8128, 33550336] | 0:18:10.316738 |
 | **python3.13t** perfects.py -n 33_551_000 -w 12 -t | [6, 28, 496, 8128, 33550336] | **0:18:35.191395** |
 | python3.13t perfects.py -n 33_551_000 -w 12 -t -v | [6, 28, 496, 8128, 33550336] | 0:18:27.886885 |
+
+## Appendix B - Results from python3.14.0a1 and python3.14.0a3
+
+Performance overall got a little worse between 3.14.0a1 and a3.
+
+### Production Executable (python3.14)
+
+| Command Line | Results | Elapsed Time |
+| :-- | :--: | --: |
+| python3.14.0a1 perfects.py -n 1_000_000 -w 10 | [6, 28, 496, 8128] | 0:00:03.969250 |
+| python3.14.0a1 perfects.py -n 1_000_000 -w 10 -v | [6, 28, 496, 8128] | 0:00:03.922897 |
+| **python3.14.0a1** perfects.py -n 1_000_000 -w 10 -p | [6, 28, 496, 8128] | **0:00:03.577016** |
+| python3.14.0a1 perfects.py -n 1_000_000 -w 10 -v -p | [6, 28, 496, 8128] | 0:00:03.895499 |
+| python3.14.0a1 perfects.py -n 1_000_000 -w 10 -s | [6, 28, 496, 8128] | 0:00:17.827239 |
+| python3.14.0a1 perfects.py -n 1_000_000 -w 10 -v -s | [6, 28, 496, 8128] | 0:00:17.862256 |
+| **python3.14.0a1** perfects.py -n 1_000_000 -w 10 -t | [6, 28, 496, 8128] | **0:00:18.820234** |
+| python3.14.0a1 perfects.py -n 1_000_000 -w 10 -v -t | [6, 28, 496, 8128] | 0:00:18.585108 |
+| | | |
+| python3.14.0a3 perfects.py -n 1_000_000 -w 10 | [6, 28, 496, 8128] | 0:00:04.252292 |
+| **python3.14.0a3** perfects.py -n 1_000_000 -w 10 -v | [6, 28, 496, 8128] | **0:00:04.128158** |
+| python3.14.0a3 perfects.py -n 1_000_000 -w 10 -p | [6, 28, 496, 8128] | 0:00:04.247987 |
+| python3.14.0a3 perfects.py -n 1_000_000 -w 10 -v -p | [6, 28, 496, 8128] | 0:00:04.153970 |
+| python3.14.0a3 perfects.py -n 1_000_000 -w 10 -s | [6, 28, 496, 8128] | 0:00:20.706441 |
+| python3.14.0a3 perfects.py -n 1_000_000 -w 10 -v -s | [6, 28, 496, 8128] | 0:00:20.685138 |
+| python3.14.0a3 perfects.py -n 1_000_000 -w 10 -t | [6, 28, 496, 8128] | 0:00:21.935475 |
+| **python3.14.0a3** perfects.py -n 1_000_000 -w 10 -v -t | [6, 28, 496, 8128] | **0:00:22.772859** |
+
+
+### Experimental Executable (python3.14t)
+
+| Command Line | Results | Elapsed Time |
+| :-- | :--: | --: |
+| python3t.14.0a1 perfects.py -n 1_000_000 -w 10 | [6, 28, 496, 8128] | 0:00:05.133041 |
+| python3.14.0a1t perfects.py -n 1_000_000 -w 10 -v | [6, 28, 496, 8128] | 0:00:05.254351 |
+| python3.14.0a1t perfects.py -n 1_000_000 -w 10 -p | [6, 28, 496, 8128] | 0:00:05.242857 |
+| python3.14.0a1t perfects.py -n 1_000_000 -w 10 -v -p | [6, 28, 496, 8128] | 0:00:05.983344 |
+| python3.14.0a1t perfects.py -n 1_000_000 -w 10 -s | [6, 28, 496, 8128] | 0:00:25.297062 |
+| **python3.14.0a1t** perfects.py -n 1_000_000 -w 10 -v -s | [6, 28, 496, 8128] | **0:00:25.906025** |
+| python3.14.0a1t perfects.py -n 1_000_000 -w 10 -t | [6, 28, 496, 8128] | 0:00:05.257499 |
+| **python3.14.0a1t** perfects.py -n 1_000_000 -w 10 -v -t | [6, 28, 496, 8128] | **0:00:04.852546** |
+| | | |
+| python3.14.0a3t perfects.py -n 1_000_000 -w 10 | [6, 28, 496, 8128] | 0:00:06.927015 |
+| python3.14.0a3t perfects.py -n 1_000_000 -w 10 -v | [6, 28, 496, 8128] | 0:00:06.652834 |
+| python3.14.0a3t perfects.py -n 1_000_000 -w 10 -p | [6, 28, 496, 8128] | 0:00:06.431952 |
+| python3.14.0a3t perfects.py -n 1_000_000 -w 10 -v -p | [6, 28, 496, 8128] | 0:00:07.033455 |
+| python3.14.0a3t perfects.py -n 1_000_000 -w 10 -s | [6, 28, 496, 8128] | 0:00:34.467524 |
+| **python3.14.0a3t** perfects.py -n 1_000_000 -w 10 -v -s | [6, 28, 496, 8128] | **0:00:34.514243** |
+| **python3.14.0a3t** perfects.py -n 1_000_000 -w 10 -t | [6, 28, 496, 8128] | **0:00:06.280839** |
+| python3.14.0a3t perfects.py -n 1_000_000 -w 10 -v -t | [6, 28, 496, 8128] | 0:00:06.919697 |

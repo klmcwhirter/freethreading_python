@@ -172,6 +172,7 @@ cython_debug/
 
 
 # klmcw addition - avoid commit asdf versions
+.etc/
 .tool-versions
 # recreated each time container is ...
 pdm.toml

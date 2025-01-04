@@ -45,33 +45,34 @@ echo_cmd ln -s ~/.asdf/installs/python/${PYTHON_VER}t/bin/python${PYTHON_MajMin}
 echo $0: done python install $(date)
 
 ###
-### PDM
+### UV
 ###
 
-echo $0: starting pdm install $(date)
+echo $0: starting uv install $(date)
 
-echo_cmd export PDM_HOME=~/.local/share/pdm
+# echo_cmd export UV_HOME=~/.local/share/uv
+echo_cmd export UV_LINK_MODE=symlink
+echo_cmd export UV_PYTHON=/home/vscode/.local/bin/python${PYTHON_VER}
 
-echo_cmd asdf plugin add pdm
-echo_cmd --no-v asdf install pdm latest
-echo_cmd asdf local pdm latest
+echo_cmd asdf plugin add uv
+echo_cmd --no-v asdf install uv latest
+echo_cmd asdf local uv latest
 
-echo_cmd rm -f pdm.toml
-echo_cmd pdm config -l python.use_venv true
-echo_cmd pdm config -l venv.in_project true
-
-# work around assumption that auth with pypi should be setup
-echo_cmd pdm config -g check_update false
-
-echo $0: done pdm install $(date)
+echo $0: done uv install $(date)
 
 
 ###
-### PDM CREATE
+### UV CREATE
 ###
 
-echo $0: starting pdm create $(date)
+echo $0: starting uv create $(date)
 
-echo_cmd pdm create
+echo_cmd uv venv
+echo_cmd rm -fr .etc
+echo_cmd mkdir .etc
+echo '#!/usr/bin/env bash' >.etc/ln_python.sh
+echo -e "for p in python${PYTHON_VER} python${PYTHON_VER}t;do ln -s ${HOME_BIN}/"'$p'" .venv/bin;done" >>.etc/ln_python.sh
+echo_cmd chmod +x .etc/ln_python.sh
+echo_cmd ./.etc/ln_python.sh
 
-echo $0: done pdm create $(date)
+echo $0: done uv create $(date)
