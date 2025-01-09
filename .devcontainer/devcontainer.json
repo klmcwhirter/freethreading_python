@@ -1,30 +1,27 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+// For format details, see https://aka.ms/devcontainer.json.
 {
-	"name": "Ubuntu",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:noble",
+	"name": "freethreading-python",
+	"image": "klmcwhirter/fedora41-dx:latest",
+	"runArgs": [
+		"--name",
+		"freethreading-python"
+	],
 	"containerEnv": {
 		"TZ": "PST8PDT"
 	},
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	"features": {
-		"ghcr.io/devcontainers-extra/features/direnv-asdf:2": {
-			// just need asdf installed
-			"version": "latest"
-		}
-	},
+	"features": {},
 	// Use 'initializeCommand' to run commands on the host machine during initialization
 	"initializeCommand": {
 		"start time": "date"
 	},
 	// Use 'onCreateCommand' to run commands during the container creation process.
-	"onCreateCommand": ".devcontainer/vsc-install-python-uv.sh",
+	"onCreateCommand": ".devcontainer/vsc-install-uv.sh",
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": {
 		"pwd": "pwd",
 		"uname": "uname -a",
-		"python version": "python --version",
+		"python version": "uv run python --version",
 		"uv version": "uv --version",
 	},
 	// Use 'postStartCommand' to run commands after the container is created.

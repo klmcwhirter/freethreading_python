@@ -16,7 +16,7 @@ do
       echo
       sleep 5
 
-      cmd="${p} perfects.py -n ${MAX_N} -w ${NUM_WORKERS} ${v} ${em}"
+      cmd="uv run ${p} perfects.py -n ${MAX_N} -w ${NUM_WORKERS} ${v} ${em}"
       echo ${cmd}
       ${cmd}
     done
